@@ -30,40 +30,160 @@ db.resumeItem = require("./resumeItem.model.js")(sequelize, Sequelize);
 db.skill = require("./skill.model.js")(sequelize, Sequelize);
 
 
-// foreign key for session
-db.user.hasMany(
-  db.session,
-  { as: "session" },
-  { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
-);
-db.session.belongsTo(
-  db.user,
-  { as: "user" },
-  { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
-);
+// Relations
 
-// foreign key for tutorials
-db.user.hasMany(
-  db.tutorial,
-  { as: "tutorial" },
-  { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
-);
-db.tutorial.belongsTo(
-  db.user,
-  { as: "user" },
-  { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
-);
+// Person and User (one person can be associated with many users)
+db.person.hasMany(db.user, {
+  as: "users",
+  foreignKey: { allowNull: false },
+  onDelete: "CASCADE",
+});
+db.user.belongsTo(db.person, {
+  foreignKey: { allowNull: false },
+  onDelete: "CASCADE",
+});
 
-// foreign key for lessons
-db.tutorial.hasMany(
-  db.lesson,
-  { as: "lesson" },
-  { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
-);
-db.lesson.belongsTo(
-  db.tutorial,
-  { as: "tutorial" },
-  { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
-);
+// Person and Admin (one person can be associated with many admins)
+db.person.hasMany(db.admin, {
+  as: "admins",
+  foreignKey: { allowNull: false },
+  onDelete: "CASCADE",
+});
+db.admin.belongsTo(db.person, {
+  foreignKey: { allowNull: false },
+  onDelete: "CASCADE",
+});
+
+// Admin and Users (an admin manages many users)
+db.admin.hasMany(db.user, {
+  as: "users",
+  foreignKey: { allowNull: false },
+  onDelete: "CASCADE",
+});
+db.user.belongsTo(db.admin, {
+  foreignKey: { allowNull: true }, // a user may or may not have an admin -- this is optional 
+  onDelete: "CASCADE",
+});
+
+// User and Resume (one user can have many resumes)
+db.user.hasMany(db.resume, {
+  as: "resumes",
+  foreignKey: { allowNull: false },
+  onDelete: "CASCADE",
+});
+db.resume.belongsTo(db.user, {
+  foreignKey: { allowNull: false },
+  onDelete: "CASCADE",
+});
+
+// User and ResumeItem (one user can have many resumeItems)
+db.user.hasMany(db.resumeItem, {
+  as: "resumeItems",
+  foreignKey: { allowNull: false },
+  onDelete: "CASCADE",
+});
+db.resumeItem.belongsTo(db.user, {
+  foreignKey: { allowNull: false },
+  onDelete: "CASCADE",
+});
+
+// Resume and ResumeItem 
+db.resume.hasMany(db.resumeItem, {
+  as: "resumeItems",
+  foreignKey: { allowNull: false },
+  onDelete: "CASCADE",
+});
+db.resumeItem.belongsTo(db.resume, {
+  foreignKey: { allowNull: false },
+  onDelete: "CASCADE",
+});
+
+// ResumeItem and Award 
+db.resumeItem.hasMany(db.award, {
+  as: "awards",
+  foreignKey: { allowNull: false },
+  onDelete: "CASCADE",
+});
+db.award.belongsTo(db.resumeItem, {
+  foreignKey: { allowNull: false },
+  onDelete: "CASCADE",
+});
+
+// ResumeItem and ContactInfo (a resume item can have contact information)
+db.resumeItem.hasMany(db.contactInfo, {
+  as: "contactInfos",
+  foreignKey: { allowNull: false },
+  onDelete: "CASCADE",
+});
+db.contactInfo.belongsTo(db.resumeItem, {
+  foreignKey: { allowNull: false },
+  onDelete: "CASCADE",
+});
+
+// ResumeItem and Education (a resume item can include education details)
+db.resumeItem.hasMany(db.education, {
+  as: "educations",
+  foreignKey: { allowNull: false },
+  onDelete: "CASCADE",
+});
+db.education.belongsTo(db.resumeItem, {
+  foreignKey: { allowNull: false },
+  onDelete: "CASCADE",
+});
+
+// ResumeItem and Experience (a resume item can include work experiences)
+db.resumeItem.hasMany(db.experience, {
+  as: "experiences",
+  foreignKey: { allowNull: false },
+  onDelete: "CASCADE",
+});
+db.experience.belongsTo(db.resumeItem, {
+  foreignKey: { allowNull: false },
+  onDelete: "CASCADE",
+});
+
+// ResumeItem and Interest (a resume item can include personal interests)
+db.resumeItem.hasMany(db.interest, {
+  as: "interests",
+  foreignKey: { allowNull: false },
+  onDelete: "CASCADE",
+});
+db.interest.belongsTo(db.resumeItem, {
+  foreignKey: { allowNull: false },
+  onDelete: "CASCADE",
+});
+
+// ResumeItem and Link (a resume item can include external links)
+db.resumeItem.hasMany(db.link, {
+  as: "links",
+  foreignKey: { allowNull: false },
+  onDelete: "CASCADE",
+});
+db.link.belongsTo(db.resumeItem, {
+  foreignKey: { allowNull: false },
+  onDelete: "CASCADE",
+});
+
+// ResumeItem and Project (a resume item can include projects)
+db.resumeItem.hasMany(db.project, {
+  as: "projects",
+  foreignKey: { allowNull: false },
+  onDelete: "CASCADE",
+});
+db.project.belongsTo(db.resumeItem, {
+  foreignKey: { allowNull: false },
+  onDelete: "CASCADE",
+});
+
+// ResumeItem and Skill (a resume item can include skills)
+db.resumeItem.hasMany(db.skill, {
+  as: "skills",
+  foreignKey: { allowNull: false },
+  onDelete: "CASCADE",
+});
+db.skill.belongsTo(db.resumeItem, {
+  foreignKey: { allowNull: false },
+  onDelete: "CASCADE",
+});
 
 module.exports = db;
