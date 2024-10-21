@@ -75,16 +75,6 @@ db.resume.belongsTo(db.user, {
   foreignKey: { allowNull: false },
   onDelete: "CASCADE",
 });
-// User and Resume (one user can have many resumes)
-db.user.hasMany(db.resume, {
-  as: "resumes",
-  foreignKey: { allowNull: false },
-  onDelete: "CASCADE",
-});
-db.resume.belongsTo(db.user, {
-  foreignKey: { allowNull: false },
-  onDelete: "CASCADE",
-});
 
 // User and ResumeItem (one user can have many resumeItems)
 db.user.hasMany(db.resumeItem, {
@@ -96,9 +86,6 @@ db.resumeItem.belongsTo(db.user, {
   foreignKey: { allowNull: false },
   onDelete: "CASCADE",
 });
-
-
-
 
 // Resume and ResumeItem 
 db.resume.hasMany(db.resumeItem, {
