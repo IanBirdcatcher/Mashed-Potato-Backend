@@ -61,7 +61,7 @@ db.admin.hasMany(db.user, {
   onDelete: "CASCADE",
 });
 db.user.belongsTo(db.admin, {
-  foreignKey: { allowNull: true }, // Optional: a user may or may not have an admin
+  foreignKey: { allowNull: true }, // a user may or may not have an admin -- this is optional 
   onDelete: "CASCADE",
 });
 
