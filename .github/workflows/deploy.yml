@@ -10,6 +10,8 @@ jobs:
   aws-deploy:
     runs-on: ubuntu-latest
     env:
+      CLIENT_ID: ${{ secrets.CLIENT_ID }}
+      CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
       DB_HOST: ${{ secrets.DB_HOST }}
       DB_PW: ${{ secrets.DB_PW}}
       DB_USER: ${{ secrets.DB_USER }}
