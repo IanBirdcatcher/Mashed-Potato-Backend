@@ -86,6 +86,20 @@ db.resume.belongsTo(db.user, {
   onDelete: "CASCADE",
 });
 
+// User and ResumeItem (one user can have many resumeItems)
+db.user.hasMany(db.resumeItem, {
+  as: "resumeItems",
+  foreignKey: { allowNull: false },
+  onDelete: "CASCADE",
+});
+db.resumeItem.belongsTo(db.user, {
+  foreignKey: { allowNull: false },
+  onDelete: "CASCADE",
+});
+
+
+
+
 // Resume and ResumeItem 
 db.resume.hasMany(db.resumeItem, {
   as: "resumeItems",
