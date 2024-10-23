@@ -14,7 +14,7 @@ module.exports = (sequelize, Sequelize) => {
         allowNull: false,
       },
       address:{
-        type: sequelize.STRING,
+        type: Sequelize.STRING,
         allowNull: false,
       }
     });

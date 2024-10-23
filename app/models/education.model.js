@@ -14,11 +14,11 @@ module.exports = (sequelize, Sequelize) => {
         allowNull: false,
       },
       degree:{
-        type: sequelize.STRING,
+        type: Sequelize.STRING,
         allowNull: false,
       },
       major:{
-        type: sequelize.STRING,
+        type: Sequelize.STRING,
         allowNull: false,
       }
     });
