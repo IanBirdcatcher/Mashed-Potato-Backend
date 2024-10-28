@@ -1,13 +1,13 @@
 module.exports = (app) => {
-  const admins = require("../controllers/admin.controller.js");
+  const user = require("../controllers/user.controller.js");
   const { authenticate } = require("../authorization/authorization.js");
   var router = require("express").Router();
 
-  router.post("/", [authenticate], admins.create);
-  router.get("/", [authenticate], admins.findAll);
-  router.get("/:id", [authenticate], admins.findOne);
-  router.put("/:id", [authenticate], admins.update);
-  router.delete("/:id", [authenticate], admins.delete);
+  router.post("/", [authenticate], user.create);
+  router.get("/", [authenticate], user.findAll);
+  router.get("/:id", [authenticate], user.findOne);
+  router.put("/:id", [authenticate], user.update);
+  router.delete("/:id", [authenticate], user.delete);
 
-  app.use("/admin", router);
+  app.use("/user", router);
 };
