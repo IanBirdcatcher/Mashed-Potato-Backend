@@ -5,8 +5,20 @@ module.exports = (sequelize, Sequelize) => {
       autoIncrement: true,
       primaryKey: true,
     },
+    fname:{
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
+    lname:{
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
     email: {
       type: Sequelize.STRING,
+      allowNull: false,
+    },
+    isAdmin: {
+      type: Sequelize.BOOLEAN,
       allowNull: false,
     },
   });
