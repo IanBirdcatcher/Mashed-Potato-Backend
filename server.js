@@ -4,6 +4,7 @@ const express = require("express");
 const cors = require("cors");
 
 const app = express();
+
 const db = require("./app/models");
 
 // Sync database
@@ -29,12 +30,22 @@ app.get("/", (req, res) => {
 
 // Import routes
 require("./app/routes/auth.routes.js")(app);
+
+// Remove comments on these routes as the appropriate controllers are built. 
+// Will cause errors if the routes are included while the controllers are not built.
+// require("./app/routes/award.routes")(app);
+// require("./app/routes/contact.routes")(app);
+// require("./app/routes/education.routes")(app);
+// require("./app/routes/experience.routes")(app);
+// require("./app/routes/interest.routes")(app);
+// require("./app/routes/link.routes")(app);
+// require("./app/routes/person.routes")(app);
+// require("./app/routes/project.routes")(app);
+// require("./app/routes/resume.routes")(app);
 require("./app/routes/user.routes")(app);
-require("./app/routes/tutorial.routes")(app);
-require("./app/routes/lesson.routes")(app);
 
 // Set the server to listen on a specified port
-const PORT = process.env.PORT || 3100;
+const PORT = process.env.PORT || 3012;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });

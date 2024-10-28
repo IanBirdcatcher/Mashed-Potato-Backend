@@ -35,6 +35,7 @@ db.interest = require("./interest.model.js")(sequelize, Sequelize);
 db.link = require("./link.model.js")(sequelize, Sequelize);
 db.project = require("./project.model.js")(sequelize, Sequelize);
 db.skill = require("./skill.model.js")(sequelize, Sequelize);
+db.session = require("./session.model.js")(sequelize, Sequelize);
 
 // Relations
 
@@ -52,11 +53,13 @@ db.resume.belongsTo(db.user, {
 //user(admin) know about users
 db.user.hasMany(db.user, {
   as: "users",
-  foreignKey: { allowNull: false },
+  foreignKey:  "adminId", sourceKey: "userId", 
+  allowNull: true,
   onDelete: "CASCADE",
 });
 db.user.belongsTo(db.user, {
-  foreignKey: { allowNull: false },
+  foreignKey:  "adminId", targetKey: "userId", 
+  allowNull: true,
   onDelete: "CASCADE",
 });
 
