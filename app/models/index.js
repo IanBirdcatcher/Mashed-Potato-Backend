@@ -2,7 +2,7 @@ const dbConfig = require("../config/db.config.js");
 const Sequelize = require("sequelize");
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
   host: dbConfig.HOST,
-  disalect: dbConfig.dialect,
+  dialect: dbConfig.dialect,
   pool: {
     max: dbConfig.pool.max,
     min: dbConfig.pool.min,
@@ -45,6 +45,17 @@ db.user.hasMany(db.resume, {
   onDelete: "CASCADE",
 });
 db.resume.belongsTo(db.user, {
+  foreignKey: { allowNull: false },
+  onDelete: "CASCADE",
+});
+
+//user(admin) know about users
+db.user.hasMany(db.user, {
+  as: "users",
+  foreignKey: { allowNull: false },
+  onDelete: "CASCADE",
+});
+db.user.belongsTo(db.user, {
   foreignKey: { allowNull: false },
   onDelete: "CASCADE",
 });
