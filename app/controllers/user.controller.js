@@ -7,7 +7,7 @@ exports.create = (req, res) => {
   // Validate request
   if (!req.body.fName) {
     res.status(400).send({
-      message: "Content can not be empty!",
+      message: "Must contain a first name",
     });
     return;
   }
@@ -50,7 +50,7 @@ exports.findAll = (req, res) => {
 
 // Find a single User with an userId
 exports.findOne = (req, res) => {
-  const userId = req.params.userId;
+  const userId = req.params.id;
 
   User.findByPk(userId)
     .then((data) => {
@@ -70,8 +70,8 @@ exports.findOne = (req, res) => {
 };
 
 // Find a single User with an email
-// exports.findByEmail = (req, res) => {
-//   const email = req.params.email;
+exports.findByEmail = (req, res) => {
+  const email = req.params.email;
 
   User.findOne({
     where: {
@@ -93,10 +93,11 @@ exports.findOne = (req, res) => {
         message: "Error retrieving User with email=" + email,
       });
     });
+  };
 
 // Update a User by the userId in the request
 exports.update = (req, res) => {
-  const userId = req.params.userId;
+  const userId = req.params.id;
 
   User.update(req.body, {
     where: { userId: userId },
@@ -121,7 +122,7 @@ exports.update = (req, res) => {
 
 // Delete a User with the specified userId in the request
 exports.delete = (req, res) => {
-  const userId = req.params.userId;
+  const userId = req.params.id;
 
   User.destroy({
     where: { userId: userId },
