@@ -5,11 +5,11 @@ module.exports = (sequelize, Sequelize) => {
       autoIncrement: true,
       primaryKey: true,
     },
-    fname:{
+    fName:{
       type: Sequelize.STRING,
       allowNull: false,
     },
-    lname:{
+    lName:{
       type: Sequelize.STRING,
       allowNull: false,
     },
@@ -19,6 +19,7 @@ module.exports = (sequelize, Sequelize) => {
     },
     isAdmin: {
       type: Sequelize.BOOLEAN,
+      defaultValue: false,
       allowNull: false,
     },
   });
