@@ -13,6 +13,10 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      resumeContent: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       
     });
   
