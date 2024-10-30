@@ -128,11 +128,13 @@ db.link.belongsTo(db.user, {
 
 db.user.hasMany(db.project, {
   as: "projects",
-  foreignKey: { allowNull: false },
+  foreignKey: "userId", sourceKey: "userId", 
+  allowNull: false,
   onDelete: "CASCADE",
 });
 db.project.belongsTo(db.user, {
-  foreignKey: { allowNull: false },
+  foreignKey: "userId", targetKey: "userId", 
+  allowNull: false,
   onDelete: "CASCADE",
 });
 
@@ -209,11 +211,13 @@ db.link.belongsTo(db.resume, {
 
 db.resume.hasMany(db.project, {
   as: "projects",
-  foreignKey: { allowNull: false },
+  foreignKey: "resumeId", sourceKey: "resumeId", 
+  allowNull: false,
   onDelete: "CASCADE",
 });
 db.project.belongsTo(db.resume, {
-  foreignKey: { allowNull: false },
+  foreignKey: "resumeId", sourceKey: "resumeId", 
+  allowNull: false,
   onDelete: "CASCADE",
 });
 
