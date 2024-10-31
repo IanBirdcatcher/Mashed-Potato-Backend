@@ -40,7 +40,9 @@ require("./app/routes/auth.routes.js")(app);
 // require("./app/routes/interest.routes")(app);
 // require("./app/routes/link.routes")(app);
 // require("./app/routes/person.routes")(app);
+require("./app/routes/project.routes")(app);
 // require("./app/routes/project.routes")(app);
+
 require("./app/routes/resume.routes")(app);
 require("./app/routes/user.routes")(app);
 
