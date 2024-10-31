@@ -42,11 +42,13 @@ db.session = require("./session.model.js")(sequelize, Sequelize);
 // User and Resume
 db.user.hasMany(db.resume, {
   as: "resumes",
-  foreignKey: { allowNull: false },
+  foreignKey: "userId", sourceKey: "userId", 
+  allowNull: true,
   onDelete: "CASCADE",
 });
 db.resume.belongsTo(db.user, {
-  foreignKey: { allowNull: false },
+  foreignKey: "userId", sourceKey: "userId", 
+  allowNull: true,
   onDelete: "CASCADE",
 });
 
