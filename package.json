@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "bundle": "mv .env dist"
   },
   "dependencies": {
     "@sequelize/mariadb": "^7.0.0-alpha.43",
