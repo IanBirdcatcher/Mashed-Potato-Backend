@@ -76,11 +76,13 @@ db.award.belongsTo(db.user, {
 
 db.user.hasMany(db.contactInfo, {
   as: "contactInfos",
-  foreignKey: { allowNull: false },
+  foreignKey:  "userId", sourceKey: "userId", 
+  allowNull: false,
   onDelete: "CASCADE",
 });
 db.contactInfo.belongsTo(db.user, {
-  foreignKey: { allowNull: false },
+  foreignKey:  "userId", targetKey: "userId", 
+  allowNull: false,
   onDelete: "CASCADE",
 });
 

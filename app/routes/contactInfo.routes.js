@@ -6,7 +6,7 @@ module.exports = (app) => {
     router.post("/", [authenticate], contactInfo.create);
     router.get("/", [authenticate], contactInfo.findAll);
     router.get("/:id", [authenticate], contactInfo.findOne);
-    router.put("/:id", [authenticate], contactInfo.update);
+    //router.put("/:id", [authenticate], contactInfo.update);
     router.delete("/:id", [authenticate], contactInfo.delete);
   
     app.use("/contactInfo", router);
