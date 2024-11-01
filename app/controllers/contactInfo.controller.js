@@ -1,7 +1,7 @@
 const db = require("../models"); // Ensure the path is correct
 const ContactInfo = db.contactInfo; // Reference to your contactInfo model
 
-// Create a new contact info
+// Create a new contact info ----------------------------------
 exports.create = (req, res) => {
     // Validate request body
     if (!req.body.email || !req.body.phone) { 
@@ -12,11 +12,11 @@ exports.create = (req, res) => {
 
     // Create a new contact info instance
     const contactInfo = {
-        userId: req.body.userId, // Ensure this matches the key sent in the request
+        userId: req.body.userId, 
         email: req.body.email,
         phone: req.body.phone,
         address: req.body.address,
-        resumeId: req.body.resumeId // Ensure this matches the key sent in the request
+        resumeId: req.body.resumeId 
     };
 
     // Save contact info in the database
@@ -34,12 +34,12 @@ exports.create = (req, res) => {
         });
 };
 
-// Retrieve all contact info
+
+// Retrieve all contact info by userId-------------------------------------
 exports.findAll = (req, res) => {
-    // Validate that userId is provided
-    if (!req.body.userId || !req.body.resumeId) {
+    if (!req.body.userId) {
         return res.status(400).send({
-            message: "User ID and resumeId are required."
+            message: "User ID is required."
         });
     }
 
@@ -50,8 +50,8 @@ exports.findAll = (req, res) => {
     })
     .then(data => {
         res.status(200).send({
-            message: "Retrieved all contact info.",
-            contactInfos: data // Include an array of contact info objects
+            message: "Retrieved all contact info for the user.",
+            contactInfos: data 
         });
     })
     .catch(err => {
@@ -61,36 +61,50 @@ exports.findAll = (req, res) => {
     });
 };
 
-// Retrieve a specific contact info by id
+
+// Retrieve a specific contact info by id-----------------------------
 exports.findOne = (req, res) => {
     const id = req.params.id;
+    const userId = req.body.userId;
 
-    ContactInfo.findByPk(id) // Find contact info by primary key (id)
-        .then(data => {
-            if (data) {
-                res.status(200).send({
-                    message: `Retrieved contact info with id ${id}.`,
-                    contactInfo: data // Include the found contact info details
-                });
-            } else {
-                res.status(404).send({
-                    message: `Contact info with id ${id} not found.`
-                });
-            }
-        })
-        .catch(err => {
-            res.status(500).send({
-                message: err.message || `Error retrieving contact info with id ${id}.`
-            });
+    // Validate that userId is provided
+    if (!userId) {
+        return res.status(400).send({
+            message: "User ID is required."
         });
+    }
+
+    ContactInfo.findOne({
+        where: {
+            id: id,
+            userId: userId
+        }
+    })
+    .then(data => {
+        if (data) {
+            res.status(200).send({
+                message: `Retrieved contact info with id ${id} for user ${userId}.`,
+                contactInfo: data 
+            });
+        } else {
+            res.status(404).send({
+                message: `Contact info with id ${id} for user ${userId} not found.`
+            });
+        }
+    })
+    .catch(err => {
+        res.status(500).send({
+            message: err.message || `Error retrieving contact info with id ${id} for user ${userId}.`
+        });
+    });
 };
 
-// Delete a specific contact info by id
+// Delete a specific contact info by id-----------------------------------
 exports.delete = (req, res) => {
     const id = req.params.id;
 
     ContactInfo.destroy({
-        where: { contactInfoId: id } // Use the id from the URL params
+        where: { contactInfoId: id } 
     })
     .then(num => {
         if (num === 1) {
@@ -109,3 +123,47 @@ exports.delete = (req, res) => {
         });
     });
 };
+// Update a specific contact info by id and userId----------------------------
+exports.update = (req, res) => {
+    const id = req.params.id;
+    const userId = req.body.userId;
+
+    // Validate that userId is provided
+    if (!userId) {
+        return res.status(400).send({
+            message: "User ID is required."
+        });
+    }
+
+    // Data to update
+    const updatedInfo = {
+        email: req.body.email,
+        phone: req.body.phone,
+        address: req.body.address,
+        resumeId: req.body.resumeId
+    };
+
+    ContactInfo.update(updatedInfo, {
+        where: {
+            id: id,
+            userId: userId
+        }
+    })
+    .then(num => {
+        if (num[0] === 1) { 
+            res.status(200).send({
+                message: `Contact info with id ${id} for user ${userId} updated successfully.`
+            });
+        } else {
+            res.status(404).send({
+                message: `Contact info with id ${id} for user ${userId} not found or no changes made.`
+            });
+        }
+    })
+    .catch(err => {
+        res.status(500).send({
+            message: err.message || `Error updating contact info with id ${id} for user ${userId}.`
+        });
+    });
+};
+
