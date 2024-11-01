@@ -36,30 +36,35 @@ exports.create = (req, res) => {
 
 
 // Retrieve all contact info by userId-------------------------------------
-exports.findAll = (req, res) => {
-    if (!req.body.userId) {
+exports.findAllForUser = (req, res) => {
+    const userId = req.params.id; // Retrieve userId from the URL parameter
+    console.log(userId); 
+
+    // Ensure that userId is provided
+    if (!userId) {
         return res.status(400).send({
             message: "User ID is required."
         });
     }
 
+    // Find all contact info entries for the specific user
     ContactInfo.findAll({
-        where: {
-            userId: req.body.userId 
-        }
+        where: { userId: userId } // Use ContactInfo here
     })
-    .then(data => {
+    .then((data) => {
         res.status(200).send({
             message: "Retrieved all contact info for the user.",
             contactInfos: data 
         });
     })
-    .catch(err => {
+    .catch((err) => {
         res.status(500).send({
             message: err.message || "Some error occurred while retrieving contact info."
         });
     });
 };
+
+
 
 
 // Retrieve a specific contact info by id-----------------------------
@@ -125,13 +130,13 @@ exports.delete = (req, res) => {
 };
 // Update a specific contact info by id and userId----------------------------
 exports.update = (req, res) => {
-    const id = req.params.id;
+    const contactInfoId = req.params.id; 
     const userId = req.body.userId;
 
-    // Validate that userId is provided
-    if (!userId) {
+    // Validate userId and contactInfoId
+    if (!userId || !contactInfoId) { 
         return res.status(400).send({
-            message: "User ID is required."
+            message: "User ID and contactInfo ID are required."
         });
     }
 
@@ -143,27 +148,30 @@ exports.update = (req, res) => {
         resumeId: req.body.resumeId
     };
 
+    // Use the correct primary key name in the where clause
     ContactInfo.update(updatedInfo, {
         where: {
-            id: id,
+            contactInfoId: contactInfoId, // Use the contactInfoId variable
             userId: userId
         }
     })
     .then(num => {
         if (num[0] === 1) { 
             res.status(200).send({
-                message: `Contact info with id ${id} for user ${userId} updated successfully.`
+                message: `Contact info with id ${contactInfoId} for user ${userId} updated successfully.` // Use contactInfoId instead of id
             });
         } else {
             res.status(404).send({
-                message: `Contact info with id ${id} for user ${userId} not found or no changes made.`
+                message: `Contact info with id ${contactInfoId} for user ${userId} not found or no changes made.` // Use contactInfoId instead of id
             });
         }
     })
     .catch(err => {
         res.status(500).send({
-            message: err.message || `Error updating contact info with id ${id} for user ${userId}.`
+            message: err.message || `Error updating contact info with id ${contactInfoId} for user ${userId}.` // Use contactInfoId instead of id
         });
     });
 };
+
+
 
