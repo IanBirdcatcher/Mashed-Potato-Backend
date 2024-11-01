@@ -70,36 +70,31 @@ exports.findAllForUser = (req, res) => {
 // Retrieve a specific contact info by id-----------------------------
 exports.findOne = (req, res) => {
     const id = req.params.id;
-    const userId = req.body.userId;
 
-    // Validate that userId is provided
-    if (!userId) {
-        return res.status(400).send({
-            message: "User ID is required."
-        });
-    }
+    console.log(req.params.id);
+
+
 
     ContactInfo.findOne({
         where: {
-            id: id,
-            userId: userId
+            contactInfoId: id,
         }
     })
     .then(data => {
         if (data) {
             res.status(200).send({
-                message: `Retrieved contact info with id ${id} for user ${userId}.`,
+                message: `Retrieved contact info with id ${id}.`,
                 contactInfo: data 
             });
         } else {
             res.status(404).send({
-                message: `Contact info with id ${id} for user ${userId} not found.`
+                message: `Contact info with id ${id} not found`
             });
         }
     })
     .catch(err => {
         res.status(500).send({
-            message: err.message || `Error retrieving contact info with id ${id} for user ${userId}.`
+            message: err.message || `Error retrieving contact info with id ${id}.`
         });
     });
 };
