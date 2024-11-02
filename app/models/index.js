@@ -120,11 +120,13 @@ db.interest.belongsTo(db.user, {
 
 db.user.hasMany(db.link, {
   as: "links",
-  foreignKey: { allowNull: false },
+  foreignKey: "userId", sourceKey: "userId", 
+  allowNull: false,
   onDelete: "CASCADE",
 });
 db.link.belongsTo(db.user, {
-  foreignKey: { allowNull: false },
+  foreignKey: "userId", targetKey: "userId", 
+  allowNull: false,
   onDelete: "CASCADE",
 });
 
@@ -205,11 +207,13 @@ db.interest.belongsTo(db.resume, {
 
 db.resume.hasMany(db.link, {
   as: "links",
-  foreignKey: { allowNull: false },
+  foreignKey: "resumeId", sourceKey: "resumeId", 
+  allowNull: false,
   onDelete: "CASCADE",
 });
 db.link.belongsTo(db.resume, {
-  foreignKey: { allowNull: false },
+  foreignKey: "resumeId", targetKey: "resumeId", 
+  allowNull: false,
   onDelete: "CASCADE",
 });
 
