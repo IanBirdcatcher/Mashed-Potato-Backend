@@ -37,7 +37,7 @@ require("./app/routes/auth.routes.js")(app);
 require("./app/routes/contactInfo.routes")(app);
 // require("./app/routes/education.routes")(app);
 require("./app/routes/experience.routes")(app);
-// require("./app/routes/interest.routes")(app);
+require("./app/routes/interest.routes")(app);
 // require("./app/routes/link.routes")(app);
 // require("./app/routes/person.routes")(app);
 require("./app/routes/project.routes")(app);
