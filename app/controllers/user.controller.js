@@ -16,8 +16,6 @@ exports.create = (req, res) => {
   const user = {
     userId: req.body.userId,
     email: req.body.email,
-    // refresh_token: req.body.refresh_token,
-    // expiration_date: req.body.expiration_date
   };
 
   // Save User in the database
