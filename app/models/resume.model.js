@@ -9,11 +9,11 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      resumeContent: {
+      template: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      templete: {
+      resumeContent: {
         type: Sequelize.STRING,
         allowNull: false,
       },

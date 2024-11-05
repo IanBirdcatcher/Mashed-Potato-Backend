@@ -42,11 +42,13 @@ db.session = require("./session.model.js")(sequelize, Sequelize);
 // User and Resume
 db.user.hasMany(db.resume, {
   as: "resumes",
-  foreignKey: { allowNull: false },
+  foreignKey: "userId", sourceKey: "userId", 
+  allowNull: true,
   onDelete: "CASCADE",
 });
 db.resume.belongsTo(db.user, {
-  foreignKey: { allowNull: false },
+  foreignKey: "userId", sourceKey: "userId", 
+  allowNull: true,
   onDelete: "CASCADE",
 });
 
@@ -68,85 +70,112 @@ db.user.belongsTo(db.user, {
 //awards ----------------------------------
 db.user.hasMany(db.award, {
   as: "awards",
+<<<<<<< HEAD
   foreignKey:  "userId", sourceKey: "userId",
   onDelete: "CASCADE",
 });
 db.award.belongsTo(db.user, {
   foreignKey: "userId", targetKey: "userId",
+=======
+  foreignKey: "userId", // Use userId
+  allowNull: false,
+  onDelete: "CASCADE",
+});
+db.award.belongsTo(db.user, {
+  foreignKey: "userId", // Use userId
+  allowNull: false,
+>>>>>>> ce90c830d20d54aaaa9c522b1e37e5cb41ebf527
   onDelete: "CASCADE",
 });
 
 // Contact Info------------------------------
 db.user.hasMany(db.contactInfo, {
   as: "contactInfos",
-  foreignKey: { allowNull: false },
+  foreignKey: "userId", // Use userId
+  allowNull: false,
   onDelete: "CASCADE",
 });
 db.contactInfo.belongsTo(db.user, {
-  foreignKey: { allowNull: false },
+  foreignKey: "userId", // Use userId
+  allowNull: false,
   onDelete: "CASCADE",
 });
 
 db.user.hasMany(db.education, {
   as: "educations",
-  foreignKey: { allowNull: false },
+  foreignKey: "userId", // Use userId
+  allowNull: false,
   onDelete: "CASCADE",
 });
 db.education.belongsTo(db.user, {
-  foreignKey: { allowNull: false },
+  foreignKey: "userId", // Use userId
+  allowNull: false,
   onDelete: "CASCADE",
 });
 
 db.user.hasMany(db.experience, {
   as: "experiences",
-  foreignKey: { allowNull: false },
+  foreignKey: "userId", sourceKey: "userId", 
+  allowNull: false,
   onDelete: "CASCADE",
 });
 db.experience.belongsTo(db.user, {
-  foreignKey: { allowNull: false },
+  foreignKey: "userId", targetKey: "userId", 
+  allowNull: false,
   onDelete: "CASCADE",
 });
 
 db.user.hasMany(db.interest, {
   as: "interests",
-  foreignKey: { allowNull: false },
+  foreignKey: "userId", // Use userId
+  allowNull: false,
   onDelete: "CASCADE",
 });
 db.interest.belongsTo(db.user, {
-  foreignKey: { allowNull: false },
+  foreignKey: "userId", // Use userId
+  allowNull: false,
   onDelete: "CASCADE",
 });
 
 db.user.hasMany(db.link, {
   as: "links",
-  foreignKey: { allowNull: false },
+  foreignKey: "userId", // Use userId
+  allowNull: false,
   onDelete: "CASCADE",
 });
 db.link.belongsTo(db.user, {
-  foreignKey: { allowNull: false },
+  foreignKey: "userId", // Use userId
+  allowNull: false,
   onDelete: "CASCADE",
 });
 
 db.user.hasMany(db.project, {
   as: "projects",
-  foreignKey: { allowNull: false },
+  foreignKey: "userId", sourceKey: "userId", 
+
+  allowNull: false,
   onDelete: "CASCADE",
 });
 db.project.belongsTo(db.user, {
-  foreignKey: { allowNull: false },
+  foreignKey: "userId", targetKey: "userId", 
+
+  allowNull: false,
   onDelete: "CASCADE",
 });
 
 db.user.hasMany(db.skill, {
   as: "skills",
-  foreignKey: { allowNull: false },
+  foreignKey: "userId", // Use userId
+  allowNull: false,
   onDelete: "CASCADE",
 });
 db.skill.belongsTo(db.user, {
-  foreignKey: { allowNull: false },
+  foreignKey: "userId", // Use userId
+  allowNull: false,
   onDelete: "CASCADE",
 });
 
+<<<<<<< HEAD
 // Resume and resume items ----------------------
 
 //Awards ---------------------------------------
@@ -158,77 +187,107 @@ db.resume.hasMany(db.award, {
 });
 db.award.belongsTo(db.resume, {
   foreignKey: "resumeId", targetKey: "resumeId",
+=======
+// Resume and Resume Items ----------------------
+db.resume.hasMany(db.award, {
+  as: "awards",
+  foreignKey: "resumeId", 
+  allowNull: false,
+  onDelete: "CASCADE",
+});
+db.award.belongsTo(db.resume, {
+  foreignKey: "resumeId", 
+  allowNull: false,
+>>>>>>> ce90c830d20d54aaaa9c522b1e37e5cb41ebf527
   onDelete: "CASCADE",
 });
 
 // ContactInfo --------------------------------------
 db.resume.hasMany(db.contactInfo, {
   as: "contactInfos",
-  foreignKey: { allowNull: false },
+  foreignKey: "resumeId", 
+  allowNull: false,
   onDelete: "CASCADE",
 });
 db.contactInfo.belongsTo(db.resume, {
-  foreignKey: { allowNull: false },
+  foreignKey: "resumeId", 
+  allowNull: false,
   onDelete: "CASCADE",
 });
 
 db.resume.hasMany(db.education, {
   as: "educations",
-  foreignKey: { allowNull: false },
+  foreignKey: "resumeId", 
+  allowNull: false,
   onDelete: "CASCADE",
 });
 db.education.belongsTo(db.resume, {
-  foreignKey: { allowNull: false },
+  foreignKey: "resumeId", 
+  allowNull: false,
   onDelete: "CASCADE",
 });
 
 db.resume.hasMany(db.experience, {
   as: "experiences",
-  foreignKey: { allowNull: false },
+  foreignKey: "resumeId", sourceKey: "resumeId", 
+  allowNull: false,
   onDelete: "CASCADE",
 });
 db.experience.belongsTo(db.resume, {
-  foreignKey: { allowNull: false },
+  foreignKey: "resumeId", targetKey: "resumeId", 
+  allowNull: false,
   onDelete: "CASCADE",
 });
 
 db.resume.hasMany(db.interest, {
   as: "interests",
-  foreignKey: { allowNull: false },
+  foreignKey: "resumeId", 
+  allowNull: false,
   onDelete: "CASCADE",
 });
 db.interest.belongsTo(db.resume, {
-  foreignKey: { allowNull: false },
+  foreignKey: "resumeId", 
+  allowNull: false,
   onDelete: "CASCADE",
 });
 
 db.resume.hasMany(db.link, {
   as: "links",
-  foreignKey: { allowNull: false },
+  foreignKey: "resumeId", 
+  allowNull: false,
   onDelete: "CASCADE",
 });
 db.link.belongsTo(db.resume, {
-  foreignKey: { allowNull: false },
+  foreignKey: "resumeId", 
+  allowNull: false,
   onDelete: "CASCADE",
 });
 
 db.resume.hasMany(db.project, {
   as: "projects",
-  foreignKey: { allowNull: false },
+
+  foreignKey: "resumeId", sourceKey: "resumeId", 
+
+  allowNull: false,
   onDelete: "CASCADE",
 });
 db.project.belongsTo(db.resume, {
-  foreignKey: { allowNull: false },
+
+  foreignKey: "resumeId", sourceKey: "resumeId", 
+
+  allowNull: false,
   onDelete: "CASCADE",
 });
 
 db.resume.hasMany(db.skill, {
   as: "skills",
-  foreignKey: { allowNull: false },
+  foreignKey: "resumeId", 
+  allowNull: false,
   onDelete: "CASCADE",
 });
 db.skill.belongsTo(db.resume, {
-  foreignKey: { allowNull: false },
+  foreignKey: "resumeId", 
+  allowNull: false,
   onDelete: "CASCADE",
 });
 
