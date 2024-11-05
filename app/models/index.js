@@ -64,16 +64,19 @@ db.user.belongsTo(db.user, {
 });
 
 // User and Resume Items --------------------
+
+//awards ----------------------------------
 db.user.hasMany(db.award, {
   as: "awards",
-  foreignKey: { allowNull: false },
+  foreignKey:  "userId", sourceKey: "userId",
   onDelete: "CASCADE",
 });
 db.award.belongsTo(db.user, {
-  foreignKey: { allowNull: false },
+  foreignKey: "userId", targetKey: "userId",
   onDelete: "CASCADE",
 });
 
+// Contact Info------------------------------
 db.user.hasMany(db.contactInfo, {
   as: "contactInfos",
   foreignKey: { allowNull: false },
@@ -145,16 +148,20 @@ db.skill.belongsTo(db.user, {
 });
 
 // Resume and resume items ----------------------
+
+//Awards ---------------------------------------
+
 db.resume.hasMany(db.award, {
   as: "awards",
-  foreignKey: { allowNull: false },
+  foreignKey:  "resumeId", sourceKey: "resumeId",
   onDelete: "CASCADE",
 });
 db.award.belongsTo(db.resume, {
-  foreignKey: { allowNull: false },
+  foreignKey: "resumeId", targetKey: "resumeId",
   onDelete: "CASCADE",
 });
 
+// ContactInfo --------------------------------------
 db.resume.hasMany(db.contactInfo, {
   as: "contactInfos",
   foreignKey: { allowNull: false },
