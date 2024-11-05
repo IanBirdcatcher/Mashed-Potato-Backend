@@ -88,11 +88,11 @@ db.contactInfo.belongsTo(db.user, {
 
 db.user.hasMany(db.education, {
   as: "educations",
-  foreignKey: { allowNull: false },
+  foreignKey: "userId", targetKey: "userId", 
   onDelete: "CASCADE",
 });
 db.education.belongsTo(db.user, {
-  foreignKey: { allowNull: false },
+  foreignKey: "userId", targetKey: "userId", 
   onDelete: "CASCADE",
 });
 
@@ -173,11 +173,11 @@ db.contactInfo.belongsTo(db.resume, {
 
 db.resume.hasMany(db.education, {
   as: "educations",
-  foreignKey: { allowNull: false },
+  foreignKey: "resumeId", sourceKey: "resumeId", 
   onDelete: "CASCADE",
 });
 db.education.belongsTo(db.resume, {
-  foreignKey: { allowNull: false },
+  foreignKey: "resumeId", sourceKey: "resumeId", 
   onDelete: "CASCADE",
 });
 

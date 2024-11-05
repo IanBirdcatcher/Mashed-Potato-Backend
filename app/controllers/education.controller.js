@@ -1,42 +1,43 @@
 const db = require("../models"); // Ensure the path is correct
-const education = db.education; // Reference to your contactInfo model
+const Education = db.education; // Reference to your education model
 
-// Create a new education info by userid----------------------------------
+// Create a new education entry ----------------------------------
 exports.create = (req, res) => {
     // Validate request body
-    if (!req.body.userId || !req.body.resumeId) { 
+    if (!req.body.userId ) { 
         return res.status(400).send({
-            message: "needs a user id and a resume id"
+            message: "Content cannot be empty! the User ID is required."
         });
     }
 
-    // Create a new contact info instance
-    const contactInfo = {
+    // Create a new education instance
+    const education = {
         userId: req.body.userId, 
-        email: req.body.email,
-        phone: req.body.phone,
-        address: req.body.address,
+        school: req.body.school,
+        GPA: req.body.GPA,
+        major: req.body.major,
+        degree: req.body.degree,
         resumeId: req.body.resumeId 
     };
 
-    // Save contact info in the database
-    ContactInfo.create(contactInfo)
+    // Save education in the database
+    Education.create(education)
         .then(data => {
             res.status(201).send({
-                message: "Contact info created successfully!",
-                data: data // Return the created contact info details
+                message: "Education entry created successfully!",
+                data: data // Return the created education details
             });
         })
         .catch(err => {
             res.status(500).send({
-                message: err.message || "Some error occurred while creating the contact info."
+                message: err.message || "Some error occurred while creating the education entry."
             });
         });
 };
-// Retrieve all contact info by userId-------------------------------------
+
+// Retrieve all education entries by userId-------------------------------------
 exports.findAllForUser = (req, res) => {
     const userId = req.params.id; // Retrieve userId from the URL parameter
-    console.log(userId); 
 
     // Ensure that userId is provided
     if (!userId) {
@@ -45,123 +46,118 @@ exports.findAllForUser = (req, res) => {
         });
     }
 
-    // Find all contact info entries for the specific user
-    ContactInfo.findAll({
-        where: { userId: userId } // Use ContactInfo here
+    // Find all education entries for the specific user
+    Education.findAll({
+        where: { userId: userId } // Use Education here
     })
     .then((data) => {
         res.status(200).send({
-            message: "Retrieved all contact info for the user.",
-            contactInfos: data 
+            message: "Retrieved all education entries for the user.",
+            educationEntries: data 
         });
     })
     .catch((err) => {
         res.status(500).send({
-            message: err.message || "Some error occurred while retrieving contact info."
+            message: err.message || "Some error occurred while retrieving education entries."
         });
     });
 };
-// Retrieve a specific contact info by id-----------------------------
+
+// Retrieve a specific education entry by id-----------------------------
 exports.findOne = (req, res) => {
     const id = req.params.id;
-    const userId = req.body.userId;
 
-    // Validate that userId is provided
-    if (!userId) {
-        return res.status(400).send({
-            message: "User ID is required."
-        });
-    }
-
-    ContactInfo.findOne({
+    Education.findOne({
         where: {
-            id: id,
-            userId: userId
+            educationId: id, 
         }
     })
     .then(data => {
         if (data) {
             res.status(200).send({
-                message: `Retrieved contact info with id ${id} for user ${userId}.`,
-                contactInfo: data 
+                message: `Retrieved education entry with id ${id}.`,
+                education: data 
             });
         } else {
             res.status(404).send({
-                message: `Contact info with id ${id} for user ${userId} not found.`
+                message: `Education entry with id ${id} not found`
             });
         }
     })
     .catch(err => {
         res.status(500).send({
-            message: err.message || `Error retrieving contact info with id ${id} for user ${userId}.`
+            message: err.message || `Error retrieving education entry with id ${id}.`
         });
     });
 };
-// Delete a specific contact info by id-----------------------------------
+
+// Delete a specific education entry by id-----------------------------------
 exports.delete = (req, res) => {
     const id = req.params.id;
 
-    ContactInfo.destroy({
-        where: { contactInfoId: id } 
+    Education.destroy({
+        where: { educationId: id } 
     })
     .then(num => {
         if (num === 1) {
             res.status(204).send({
-                message: `Contact info with id ${id} deleted successfully.`
+                message: `Education entry with id ${id} deleted successfully.`
             });
         } else {
             res.status(404).send({
-                message: `Contact info with id ${id} not found.`
+                message: `Education entry with id ${id} not found.`
             });
         }
     })
     .catch(err => {
         res.status(500).send({
-            message: err.message || `Error deleting contact info with id ${id}.`
+            message: err.message || `Error deleting education entry with id ${id}.`
         });
     });
 };
-// Update a specific contact info by id and userId----------------------------
+
+// Update a specific education entry by id and userId----------------------------
 exports.update = (req, res) => {
-    const contactInfoId = req.params.id; 
+    const educationId = req.params.id; 
     const userId = req.body.userId;
 
-    // Validate userId and contactInfoId
-    if (!userId || !contactInfoId) { 
+    // Validate userId and educationId
+    if (!userId || !educationId) { 
         return res.status(400).send({
-            message: "User ID and contactInfo ID are required."
+            message: "User ID and education ID are required."
         });
     }
 
     // Data to update
     const updatedInfo = {
-        email: req.body.email,
-        phone: req.body.phone,
-        address: req.body.address,
-        resumeId: req.body.resumeId
+        school: req.body.school,
+        GPA: req.body.GPA,
+        major: req.body.major,
+        degree: req.body.degree,
+        resumeId: req.body.resumeId // This can be optional if not required
     };
 
     // Use the correct primary key name in the where clause
-    ContactInfo.update(updatedInfo, {
+    Education.update(updatedInfo, {
         where: {
-            contactInfoId: contactInfoId, // Use the contactInfoId variable
+            educationId: educationId, // Use the educationId variable
             userId: userId
         }
     })
     .then(num => {
         if (num[0] === 1) { 
             res.status(200).send({
-                message: `Contact info with id ${contactInfoId} for user ${userId} updated successfully.` // Use contactInfoId instead of id
+                message: `Education entry with id ${educationId} for user ${userId} updated successfully.`
             });
         } else {
             res.status(404).send({
-                message: `Contact info with id ${contactInfoId} for user ${userId} not found or no changes made.` // Use contactInfoId instead of id
+                message: `Education entry with id ${educationId} for user ${userId} not found or no changes made.`
             });
         }
     })
     .catch(err => {
         res.status(500).send({
-            message: err.message || `Error updating contact info with id ${contactInfoId} for user ${userId}.` // Use contactInfoId instead of id
+            message: err.message || `Error updating education entry with id ${educationId} for user ${userId}.`
         });
     });
 };
