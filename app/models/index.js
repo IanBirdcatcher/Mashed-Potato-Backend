@@ -82,96 +82,96 @@ db.user.belongsTo(db.user, {
 db.user.hasMany(db.award, {
   as: "awards",
   foreignKey: "userId", // Use userId
-  allowNull: true,
+  allowNull: false,
   onDelete: "CASCADE",
 });
 db.award.belongsTo(db.user, {
   foreignKey: "userId", // Use userId
-  allowNull: true,
+  allowNull: false,
   onDelete: "CASCADE",
 });
 
 db.user.hasMany(db.contactInfo, {
   as: "contactInfos",
   foreignKey: "userId", // Use userId
-  allowNull: true,
+  allowNull: false,
   onDelete: "CASCADE",
 });
 db.contactInfo.belongsTo(db.user, {
   foreignKey: "userId", // Use userId
-  allowNull: true,
+  allowNull: false,
   onDelete: "CASCADE",
 });
 
 db.user.hasMany(db.education, {
   as: "educations",
   foreignKey: "userId", // Use userId
-  allowNull: true,
+  allowNull: false,
   onDelete: "CASCADE",
 });
 db.education.belongsTo(db.user, {
   foreignKey: "userId", // Use userId
-  allowNull: true,
+  allowNull: false,
   onDelete: "CASCADE",
 });
 
 db.user.hasMany(db.experience, {
   as: "experiences",
   foreignKey: "userId", sourceKey: "userId", 
-  allowNull: true,
+  allowNull: false,
   onDelete: "CASCADE",
 });
 db.experience.belongsTo(db.user, {
   foreignKey: "userId", targetKey: "userId", 
-  allowNull: true,
+  allowNull: false,
   onDelete: "CASCADE",
 });
 
 db.user.hasMany(db.interest, {
   as: "interests",
   foreignKey: "userId", // Use userId
-  allowNull: true,
+  allowNull: false,
   onDelete: "CASCADE",
 });
 db.interest.belongsTo(db.user, {
   foreignKey: "userId", // Use userId
-  allowNull: true,
+  allowNull: false,
   onDelete: "CASCADE",
 });
 
 db.user.hasMany(db.link, {
   as: "links",
   foreignKey: "userId", // Use userId
-  allowNull: true,
+  allowNull: false,
   onDelete: "CASCADE",
 });
 db.link.belongsTo(db.user, {
   foreignKey: "userId", // Use userId
-  allowNull: true,
+  allowNull: false,
   onDelete: "CASCADE",
 });
 
 db.user.hasMany(db.project, {
   as: "projects",
   foreignKey: "userId", sourceKey: "userId", 
-  allowNull: true,
+  allowNull: false,
   onDelete: "CASCADE",
 });
 db.project.belongsTo(db.user, {
   foreignKey: "userId", targetKey: "userId", 
-  allowNull: true,
+  allowNull: false,
   onDelete: "CASCADE",
 });
 
 db.user.hasMany(db.skill, {
   as: "skills",
   foreignKey: "userId", // Use userId
-  allowNull: true,
+  allowNull: false,
   onDelete: "CASCADE",
 });
 db.skill.belongsTo(db.user, {
   foreignKey: "userId", // Use userId
-  allowNull: true,
+  allowNull: false,
   onDelete: "CASCADE",
 });
 
