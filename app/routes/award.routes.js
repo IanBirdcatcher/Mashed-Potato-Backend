@@ -3,6 +3,7 @@ module.exports = (app) => {
   const { authenticate } = require("../authorization/authorization.js");
   var router = require("express").Router();
 
+  //award routes
   router.post("/", [authenticate], award.create);
   router.get("/", [authenticate], award.findAll);
   router.get("/byUser/:id", [authenticate], award.findAllForUser);
