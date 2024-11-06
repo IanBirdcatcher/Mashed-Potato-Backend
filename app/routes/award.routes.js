@@ -4,10 +4,11 @@ module.exports = (app) => {
   var router = require("express").Router();
 
   router.post("/", [authenticate], award.create);
-  // router.get("/", [authenticate], award.findAll);
-  // router.get("/:id", [authenticate], award.findOne);
-  // router.put("/:id", [authenticate], award.update);
-  // router.delete("/:id", [authenticate], award.delete);
+  router.get("/", [authenticate], award.findAll);
+  router.get("/byUser/:id", [authenticate], award.findAllForUser);
+  router.get("/:id", [authenticate], award.findOne);
+  router.put("/:id", [authenticate], award.update);
+  router.delete("/:id", [authenticate], award.delete);
 
   app.use("/award", router);
 };

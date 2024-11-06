@@ -36,15 +36,31 @@ exports.create = (req, res) => {
 };
 
 // Find a single Award with an id
+exports.findAll = (req, res) => {
+  const awardId = req.query.awardId;
+  var condition = awardId ? { awardId: { [Op.like]: `%${awardId}%` } } : null;
+  Award.findAll({ where: condition })
+    .then((data) => {
+      res.send(data);
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving awards.",
+      });
+    });
+};
+
+// Find all Awards for a user
 exports.findAllForUser = (req, res) => {
-  const userId = req.params.userId;
+  const userId = req.params.id;
   Award.findAll({ where: { userId: userId } })
     .then((data) => {
-      if (data) {
+      if (data + " " != " ") {
         res.send(data);
       } else {
         res.status(404).send({
-          message: `Cannot find Awards for user with id=${userId}.`,
+          message: `Cannot find Award for user with id=${userId}.`,
         });
       }
     })
@@ -52,10 +68,11 @@ exports.findAllForUser = (req, res) => {
       res.status(500).send({
         message:
           err.message ||
-          "Error retrieving Awards for user with id=" + userId,
+          "Error retrieving Projects for user with id=" + userId,
       });
     });
 };
+
 // Find a single Award with an id
 exports.findOne = (req, res) => {
   const id = req.params.id;
@@ -80,7 +97,7 @@ exports.findOne = (req, res) => {
 exports.update = (req, res) => {
   const id = req.params.id;
   Award.update(req.body, {
-    where: { id: id },
+    where: { awardId : id },
   })
     .then((num) => {
       if (num == 1) {
@@ -103,7 +120,7 @@ exports.update = (req, res) => {
 exports.delete = (req, res) => {
   const id = req.params.id;
   Award.destroy({
-    where: { id: id },
+    where: { awardId: id },
   })
     .then((num) => {
       if (num == 1) {

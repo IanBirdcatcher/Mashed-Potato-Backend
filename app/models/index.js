@@ -70,13 +70,12 @@ db.user.belongsTo(db.user, {
 //awards ----------------------------------
 db.user.hasMany(db.award, {
   as: "awards",
-<<<<<<< HEAD
+
   foreignKey:  "userId", sourceKey: "userId",
   onDelete: "CASCADE",
 });
 db.award.belongsTo(db.user, {
   foreignKey: "userId", targetKey: "userId",
-=======
   foreignKey: "userId", // Use userId
   allowNull: false,
   onDelete: "CASCADE",
@@ -84,7 +83,6 @@ db.award.belongsTo(db.user, {
 db.award.belongsTo(db.user, {
   foreignKey: "userId", // Use userId
   allowNull: false,
->>>>>>> ce90c830d20d54aaaa9c522b1e37e5cb41ebf527
   onDelete: "CASCADE",
 });
 
@@ -175,7 +173,6 @@ db.skill.belongsTo(db.user, {
   onDelete: "CASCADE",
 });
 
-<<<<<<< HEAD
 // Resume and resume items ----------------------
 
 //Awards ---------------------------------------
@@ -187,19 +184,6 @@ db.resume.hasMany(db.award, {
 });
 db.award.belongsTo(db.resume, {
   foreignKey: "resumeId", targetKey: "resumeId",
-=======
-// Resume and Resume Items ----------------------
-db.resume.hasMany(db.award, {
-  as: "awards",
-  foreignKey: "resumeId", 
-  allowNull: false,
-  onDelete: "CASCADE",
-});
-db.award.belongsTo(db.resume, {
-  foreignKey: "resumeId", 
-  allowNull: false,
->>>>>>> ce90c830d20d54aaaa9c522b1e37e5cb41ebf527
-  onDelete: "CASCADE",
 });
 
 // ContactInfo --------------------------------------
