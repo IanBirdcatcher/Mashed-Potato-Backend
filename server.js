@@ -46,7 +46,7 @@ require("./app/routes/resume.routes")(app);
 require("./app/routes/user.routes")(app);
 
 // Set the server to listen on a specified port
-const PORT = process.env.PORT || 3012;
+const PORT = process.env.PORT || 3022;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
