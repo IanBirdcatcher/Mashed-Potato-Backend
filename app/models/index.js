@@ -26,6 +26,8 @@ db.sequelize = sequelize;
 db.user = require("./user.model.js")(sequelize, Sequelize);
 db.resume = require("./resume.model.js")(sequelize, Sequelize);
 
+db.session = require("./session.model.js")(sequelize, Sequelize);
+
 // resume items 
 db.award = require("./award.model.js")(sequelize, Sequelize);
 db.contactInfo = require("./contactInfo.model.js")(sequelize, Sequelize);
@@ -35,7 +37,6 @@ db.interest = require("./interest.model.js")(sequelize, Sequelize);
 db.link = require("./link.model.js")(sequelize, Sequelize);
 db.project = require("./project.model.js")(sequelize, Sequelize);
 db.skill = require("./skill.model.js")(sequelize, Sequelize);
-db.session = require("./session.model.js")(sequelize, Sequelize);
 
 
 // bridge tables
@@ -48,7 +49,6 @@ db.interestResume = require("./interestResume.model.js")(sequelize, Sequelize);
 db.linkResume = require("./linkResume.model.js")(sequelize, Sequelize);
 db.projectResume = require("./projectResume.model.js")(sequelize, Sequelize);
 db.skillResume = require("./skillResume.model.js")(sequelize, Sequelize);
-db.sessionResume = require("./sessionResume.model.js")(sequelize, Sequelize);
 
 // Relations
 

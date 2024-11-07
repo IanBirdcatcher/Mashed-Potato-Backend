@@ -2,6 +2,6 @@ module.exports = (sequelize, Sequelize) => {
     const skilResume = sequelize.define("skillResume", {
     });
   
-    return award;
+    return skilResume;
   };
   
