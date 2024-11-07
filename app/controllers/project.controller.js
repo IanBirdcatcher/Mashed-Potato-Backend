@@ -1,6 +1,7 @@
 const db = require("../models");
 const Project = db.project;
 const Op = db.Sequelize.Op;
+
 // Create and Save a new Project
 exports.create = (req, res) => {
   // Validate request
@@ -9,8 +10,8 @@ exports.create = (req, res) => {
       message: "UserId can not be empty!",
     });
     return;
-
   }
+  
   // Create a Project
   const project = {
     projectId: req.body.projectId,
