@@ -33,15 +33,18 @@ require("./app/routes/auth.routes.js")(app);
 
 // Remove comments on these routes as the appropriate controllers are built. 
 // Will cause errors if the routes are included while the controllers are not built.
-// require("./app/routes/award.routes")(app);
+
+require("./app/routes/award.routes.js")(app);
+// require("./app/routes/contact.routes")(app);
+
+require("./app/routes/award.routes")(app);
 require("./app/routes/contactInfo.routes")(app);
 // require("./app/routes/education.routes")(app);
 require("./app/routes/experience.routes")(app);
 // require("./app/routes/interest.routes")(app);
 // require("./app/routes/link.routes")(app);
-// require("./app/routes/person.routes")(app);
+require("./app/routes/user.routes.js")(app);
 require("./app/routes/project.routes")(app);
-
 require("./app/routes/resume.routes")(app);
 require("./app/routes/user.routes")(app);
 

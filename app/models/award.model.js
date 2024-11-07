@@ -9,7 +9,7 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      awardDisc: {
+      awardDesc: {
         type: Sequelize.STRING,
         allowNull: false,
       },
