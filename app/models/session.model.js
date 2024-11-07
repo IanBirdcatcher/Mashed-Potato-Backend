@@ -1,28 +1,23 @@
 module.exports = (sequelize, Sequelize) => {
-  const User = sequelize.define("user", {
-    userId: {
+  const Session = sequelize.define("session", {
+    id: {
       type: Sequelize.INTEGER,
       autoIncrement: true,
       primaryKey: true,
     },
-    fName:{
-      type: Sequelize.STRING,
-      allowNull: false,
-    },
-    lName:{
-      type: Sequelize.STRING,
+    token: {
+      type: Sequelize.STRING(3000),
       allowNull: false,
     },
     email: {
       type: Sequelize.STRING,
       allowNull: false,
     },
-    isAdmin: {
-      type: Sequelize.BOOLEAN,
-      defaultValue: false,
+    expirationDate: {
+      type: Sequelize.DATE,
       allowNull: false,
     },
   });
 
-  return User;
+  return Session;
 };
