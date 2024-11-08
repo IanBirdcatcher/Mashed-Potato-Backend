@@ -101,13 +101,12 @@ db.contactInfo.belongsTo(db.user, {
 
 db.user.hasMany(db.education, {
   as: "educations",
-  foreignKey: "userId", // Use userId
-  allowNull: false,
+  foreignKey: "userId", targetKey: "userId", 
   onDelete: "CASCADE",
 });
 db.education.belongsTo(db.user, {
-  foreignKey: "userId", // Use userId
-  allowNull: false,
+  foreignKey: "userId", targetKey: "userId", 
+
   onDelete: "CASCADE",
 });
 
@@ -201,13 +200,11 @@ db.contactInfo.belongsTo(db.resume, {
 
 db.resume.hasMany(db.education, {
   as: "educations",
-  foreignKey: "resumeId", 
-  allowNull: false,
+  foreignKey: "resumeId", sourceKey: "resumeId", 
   onDelete: "CASCADE",
 });
 db.education.belongsTo(db.resume, {
-  foreignKey: "resumeId", 
-  allowNull: false,
+  foreignKey: "resumeId", sourceKey: "resumeId", 
   onDelete: "CASCADE",
 });
 
