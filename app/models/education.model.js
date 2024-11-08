@@ -10,7 +10,7 @@ module.exports = (sequelize, Sequelize) => {
         allowNull: false,
       },
       GPA: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.numeric,
         allowNull: false,
       },
       degree:{
