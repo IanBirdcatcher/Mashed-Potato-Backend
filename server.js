@@ -35,6 +35,7 @@ require("./app/routes/auth.routes.js")(app);
 // Will cause errors if the routes are included while the controllers are not built.
 
 require("./app/routes/award.routes.js")(app);
+// require("./app/routes/contact.routes")(app);
 
 require("./app/routes/award.routes")(app);
 require("./app/routes/contactInfo.routes")(app);

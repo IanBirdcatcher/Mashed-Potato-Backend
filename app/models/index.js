@@ -205,7 +205,6 @@ db.resume.hasMany(db.education, {
 });
 db.education.belongsTo(db.resume, {
   foreignKey: "resumeId", sourceKey: "resumeId", 
-
   onDelete: "CASCADE",
 });
 
