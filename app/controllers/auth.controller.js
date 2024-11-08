@@ -153,7 +153,7 @@ exports.login = async (req, res) => {
             email: user.email,
             fName: user.fName,
             lName: user.lName,
-            userId: user.id,
+            userId: user.userId,
             token: session.token,
             // refresh_token: user.refresh_token,
             // expiration_date: user.expiration_date

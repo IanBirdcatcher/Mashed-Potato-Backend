@@ -1,6 +1,6 @@
 module.exports = (sequelize, Sequelize) => {
     const education = sequelize.define("education", {
-      educationInfoId: {
+      educationId: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         primaryKey: true,
@@ -10,7 +10,7 @@ module.exports = (sequelize, Sequelize) => {
         allowNull: false,
       },
       GPA: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.DECIMAL(3,2),
         allowNull: false,
       },
       degree:{

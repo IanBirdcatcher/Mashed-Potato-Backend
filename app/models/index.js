@@ -66,8 +66,16 @@ db.user.belongsTo(db.user, {
 });
 
 // User and Resume Items --------------------
+
+//awards ----------------------------------
 db.user.hasMany(db.award, {
   as: "awards",
+
+  foreignKey:  "userId", sourceKey: "userId",
+  onDelete: "CASCADE",
+});
+db.award.belongsTo(db.user, {
+  foreignKey: "userId", targetKey: "userId",
   foreignKey: "userId", // Use userId
   allowNull: false,
   onDelete: "CASCADE",
@@ -78,6 +86,7 @@ db.award.belongsTo(db.user, {
   onDelete: "CASCADE",
 });
 
+// Contact Info------------------------------
 db.user.hasMany(db.contactInfo, {
   as: "contactInfos",
   foreignKey: "userId", // Use userId
@@ -92,13 +101,12 @@ db.contactInfo.belongsTo(db.user, {
 
 db.user.hasMany(db.education, {
   as: "educations",
-  foreignKey: "userId", // Use userId
-  allowNull: false,
+  foreignKey: "userId", targetKey: "userId", 
   onDelete: "CASCADE",
 });
 db.education.belongsTo(db.user, {
-  foreignKey: "userId", // Use userId
-  allowNull: false,
+  foreignKey: "userId", targetKey: "userId", 
+
   onDelete: "CASCADE",
 });
 
@@ -128,12 +136,12 @@ db.interest.belongsTo(db.user, {
 
 db.user.hasMany(db.link, {
   as: "links",
-  foreignKey: "userId", // Use userId
+  foreignKey: "userId", sourceKey: "userId",
   allowNull: false,
   onDelete: "CASCADE",
 });
 db.link.belongsTo(db.user, {
-  foreignKey: "userId", // Use userId
+  foreignKey: "userId", targetKey: "userId",
   allowNull: false,
   onDelete: "CASCADE",
 });
@@ -154,29 +162,30 @@ db.project.belongsTo(db.user, {
 
 db.user.hasMany(db.skill, {
   as: "skills",
-  foreignKey: "userId", // Use userId
+  foreignKey: "userId", sourceKey: "userId", 
   allowNull: false,
   onDelete: "CASCADE",
 });
 db.skill.belongsTo(db.user, {
-  foreignKey: "userId", // Use userId
+  foreignKey: "userId", targetKey: "userId", 
   allowNull: false,
   onDelete: "CASCADE",
 });
 
-// Resume and Resume Items ----------------------
+// Resume and resume items ----------------------
+
+//Awards ---------------------------------------
+
 db.resume.hasMany(db.award, {
   as: "awards",
-  foreignKey: "resumeId", 
-  allowNull: false,
+  foreignKey:  "resumeId", sourceKey: "resumeId",
   onDelete: "CASCADE",
 });
 db.award.belongsTo(db.resume, {
-  foreignKey: "resumeId", 
-  allowNull: false,
-  onDelete: "CASCADE",
+  foreignKey: "resumeId", targetKey: "resumeId",
 });
 
+// ContactInfo --------------------------------------
 db.resume.hasMany(db.contactInfo, {
   as: "contactInfos",
   foreignKey: "resumeId", 
@@ -191,13 +200,11 @@ db.contactInfo.belongsTo(db.resume, {
 
 db.resume.hasMany(db.education, {
   as: "educations",
-  foreignKey: "resumeId", 
-  allowNull: false,
+  foreignKey: "resumeId", sourceKey: "resumeId", 
   onDelete: "CASCADE",
 });
 db.education.belongsTo(db.resume, {
-  foreignKey: "resumeId", 
-  allowNull: false,
+  foreignKey: "resumeId", sourceKey: "resumeId", 
   onDelete: "CASCADE",
 });
 
@@ -227,12 +234,12 @@ db.interest.belongsTo(db.resume, {
 
 db.resume.hasMany(db.link, {
   as: "links",
-  foreignKey: "resumeId", 
+  foreignKey: "resumeId", sourceKey: "resumeId",
   allowNull: false,
   onDelete: "CASCADE",
 });
 db.link.belongsTo(db.resume, {
-  foreignKey: "resumeId", 
+  foreignKey: "resumeId", targetKey: "resumeId", 
   allowNull: false,
   onDelete: "CASCADE",
 });
@@ -255,12 +262,12 @@ db.project.belongsTo(db.resume, {
 
 db.resume.hasMany(db.skill, {
   as: "skills",
-  foreignKey: "resumeId", 
+  foreignKey: "resumeId", sourceKey: "resumeId", 
   allowNull: false,
   onDelete: "CASCADE",
 });
 db.skill.belongsTo(db.resume, {
-  foreignKey: "resumeId", 
+  foreignKey: "resumeId", targetKey: "resumeId", 
   allowNull: false,
   onDelete: "CASCADE",
 });
