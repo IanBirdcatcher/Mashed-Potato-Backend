@@ -16,8 +16,8 @@ exports.create = (req, res) => {
   const resume = {
     resumeId: req.body.resumeId,
     resumeName: req.body.resumeName,
-    template: req.body.template,
-    resumeContent: req.body.resumeContent,
+    templateId: req.body.templateId,
+    jobTitle: req.body.jobTitle,
     userId: req.body.userId,
   };
   // Save Resume in the database

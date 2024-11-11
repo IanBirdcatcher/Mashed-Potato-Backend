@@ -30,12 +30,6 @@ exports.create = (req, res) => {
             `The user with an id of ${req.body.userId} cannot be found.`
         
         });
-      } else if (err.message.includes("no: 1452, SQLState: 23000) Cannot add or update a child row: a foreign key constraint fails (`resumes`.`skills`, CONSTRAINT `skills_ibfk_2` FOREIGN KEY (`resumeId`) REFERENCES `resumes` (`resumeId`)")) {
-        res.status(404).send({
-          message:
-            `The resume with an id of ${req.body.resumeId} cannot be found.`
-        
-        });
       } else { 
         res.status(500).send({
           message:
@@ -125,12 +119,6 @@ exports.update = (req, res) => {
         res.status(404).send({
           message:
             `The user with an id of ${req.body.userId} cannot be found.`
-        
-        });
-      } else if (err.message.includes("no: 1452, SQLState: 23000) Cannot add or update a child row: a foreign key constraint fails (`resumes`.`skills`, CONSTRAINT `skills_ibfk_2` FOREIGN KEY (`resumeId`) REFERENCES `resumes` (`resumeId`)")) {
-        res.status(404).send({
-          message:
-            `The resume with an id of ${req.body.resumeId} cannot be found.`
         
         });
       } else { 

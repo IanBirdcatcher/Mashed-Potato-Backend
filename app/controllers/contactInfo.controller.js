@@ -16,7 +16,6 @@ exports.create = (req, res) => {
         email: req.body.email,
         phone: req.body.phone,
         address: req.body.address,
-        resumeId: req.body.resumeId 
     };
 
     // Save contact info in the database
@@ -140,7 +139,6 @@ exports.update = (req, res) => {
         email: req.body.email,
         phone: req.body.phone,
         address: req.body.address,
-        resumeId: req.body.resumeId
     };
 
     // Use the correct primary key name in the where clause

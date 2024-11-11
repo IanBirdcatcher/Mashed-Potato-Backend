@@ -16,8 +16,7 @@ exports.create = (req, res) => {
     linkId: req.body.linkId,
     linkName: req.body.linkName,
     link: req.body.link,
-    userId: req.body.userId,
-    resumeId: req.body.resumeId
+    userId: req.body.userId
   };
   // Save Link in the database
   Link.create(link)  
@@ -29,12 +28,6 @@ exports.create = (req, res) => {
         res.status(404).send({
           message:
             `The user with an id of ${req.body.userId} cannot be found.`
-        
-        });
-      } else if (err.message.includes("no: 1452, SQLState: 23000) Cannot add or update a child row: a foreign key constraint fails (`resumes`.`links`, CONSTRAINT `links_ibfk_2` FOREIGN KEY (`resumeId`) REFERENCES `resumes` (`resumeId`)")) {
-        res.status(404).send({
-          message:
-            `The resume with an id of ${req.body.resumeId} cannot be found.`
         
         });
       } else { 
@@ -126,12 +119,6 @@ exports.update = (req, res) => {
         res.status(404).send({
           message:
             `The user with an id of ${req.body.userId} cannot be found.`
-        
-        });
-      } else if (err.message.includes("no: 1452, SQLState: 23000) Cannot add or update a child row: a foreign key constraint fails (`resumes`.`links`, CONSTRAINT `links_ibfk_2` FOREIGN KEY (`resumeId`) REFERENCES `resumes` (`resumeId`)")) {
-        res.status(404).send({
-          message:
-            `The resume with an id of ${req.body.resumeId} cannot be found.`
         
         });
       } else { 

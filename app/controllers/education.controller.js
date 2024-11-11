@@ -18,7 +18,6 @@ exports.create = (req, res) => {
     major: req.body.major,
     degree: req.body.degree,
     userId: req.body.userId,
-    resumeId: req.body.resumeId,
   };
 
   // Save the Education entry in the database

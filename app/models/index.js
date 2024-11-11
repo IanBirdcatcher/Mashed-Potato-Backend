@@ -83,14 +83,7 @@ db.user.belongsTo(db.user, {
 //awards ----------------------------------
 db.user.hasMany(db.award, {
   as: "awards",
-
   foreignKey:  "userId", sourceKey: "userId",
-  onDelete: "CASCADE",
-});
-db.award.belongsTo(db.user, {
-  foreignKey: "userId", targetKey: "userId",
-  foreignKey: "userId", // Use userId
-  allowNull: false,
   onDelete: "CASCADE",
 });
 db.award.belongsTo(db.user, {
@@ -119,7 +112,6 @@ db.user.hasMany(db.education, {
 });
 db.education.belongsTo(db.user, {
   foreignKey: "userId", targetKey: "userId", 
-
   onDelete: "CASCADE",
 });
 
