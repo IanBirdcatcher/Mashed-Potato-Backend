@@ -15,8 +15,7 @@ exports.create = (req, res) => {
   const skill = {
     skillId: req.body.skillId,
     skill: req.body.skill,
-    userId: req.body.userId,
-    resumeId: req.body.resumeId
+    userId: req.body.userId
   };
   // Save Skill in the database
   Skill.create(skill)  
