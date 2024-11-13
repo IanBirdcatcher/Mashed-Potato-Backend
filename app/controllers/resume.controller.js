@@ -17,6 +17,7 @@ exports.create = (req, res) => {
     resumeId: req.body.resumeId,
     resumeName: req.body.resumeName,
     templateId: req.body.templateId,
+    templateName: req.body.templateName,
     jobTitle: req.body.jobTitle,
     userId: req.body.userId,
   };
