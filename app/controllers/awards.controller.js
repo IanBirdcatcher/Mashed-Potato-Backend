@@ -18,7 +18,6 @@ exports.create = (req, res) => {
     awardName: req.body.awardName,
     awardDesc: req.body.awardDesc,
     userId: req.body.userId,
-    resumeId: req.body.resumeId,
   };
   console.log(award);
 

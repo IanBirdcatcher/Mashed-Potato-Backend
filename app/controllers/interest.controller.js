@@ -16,8 +16,7 @@ exports.create = (req, res) => {
     interestId: req.body.interestId,
     interestName: req.body.interestName,
     interestDesc: req.body.interestDesc,
-    userId: req.body.userId,
-    resumeId: req.body.resumeId
+    userId: req.body.userId
   };
   // Save Interest in the database
   Interest.create(interest)  
@@ -29,15 +28,8 @@ exports.create = (req, res) => {
         res.status(404).send({
           message:
             `The user with an id of ${req.body.userId} cannot be found.`
-        
         });
-      } else if (err.message.includes("no: 1452, SQLState: 23000) Cannot add or update a child row: a foreign key constraint fails (`resumes`.`interests`, CONSTRAINT `interests_ibfk_2` FOREIGN KEY (`resumeId`) REFERENCES `resumes` (`resumeId`)")) {
-        res.status(404).send({
-          message:
-            `The resume with an id of ${req.body.resumeId} cannot be found.`
-        
-        });
-      } else { 
+      }  else { 
         res.status(500).send({
           message:
             err.message || "Some error occurred while retrieving interests.",
@@ -128,13 +120,7 @@ exports.update = (req, res) => {
             `The user with an id of ${req.body.userId} cannot be found.`
         
         });
-      } else if (err.message.includes("no: 1452, SQLState: 23000) Cannot add or update a child row: a foreign key constraint fails (`resumes`.`interests`, CONSTRAINT `interests_ibfk_2` FOREIGN KEY (`resumeId`) REFERENCES `resumes` (`resumeId`)")) {
-        res.status(404).send({
-          message:
-            `The resume with an id of ${req.body.resumeId} cannot be found.`
-        
-        });
-      } else { 
+      }  else { 
         res.status(500).send({
           message:
             err.message || "Some error occurred while retrieving interests.",

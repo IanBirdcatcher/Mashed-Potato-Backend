@@ -9,14 +9,14 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      template: {
+      jobTitle:{
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
       },
-      resumeContent: {
-        type: Sequelize.STRING,
+      templateId: {
+        type: Sequelize.INTEGER,
         allowNull: false,
-      },
+      }
       
     });
   

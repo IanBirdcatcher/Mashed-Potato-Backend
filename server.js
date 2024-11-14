@@ -46,6 +46,16 @@ require("./app/routes/project.routes")(app);
 require("./app/routes/resume.routes")(app);
 require("./app/routes/user.routes")(app);
 
+// Bridge table routes
+require("./app/routes/awardResume.routes")(app);
+require("./app/routes/contactInfoResume.routes")(app);
+require("./app/routes/educationResume.routes")(app);
+require("./app/routes/experienceResume.routes")(app);
+require("./app/routes/interestResume.routes")(app);
+require("./app/routes/linkResume.routes")(app);
+require("./app/routes/projectResume.routes")(app);
+
+
 // Set the server to listen on a specified port
 const PORT = process.env.PORT || 3022;
 app.listen(PORT, () => {
