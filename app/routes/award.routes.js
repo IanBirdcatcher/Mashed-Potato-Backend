@@ -11,5 +11,5 @@ module.exports = (app) => {
   router.put("/:id", [authenticate], award.update);
   router.delete("/:id", [authenticate], award.delete);
 
-  app.use("/award", router);
+  app.use("/resume-t2/award", router);
 };

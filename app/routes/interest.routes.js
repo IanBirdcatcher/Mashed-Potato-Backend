@@ -11,5 +11,5 @@ module.exports = (app) => {
   router.delete("/:id", [authenticate], interest.delete);
   router.delete("/byUser/:id", [authenticate], interest.deleteForUser)
 
-  app.use("/interest", router);
+  app.use("/resume-t2/interest", router);
 };
