@@ -11,5 +11,5 @@ module.exports = (app) => {
   router.delete("/:id", [authenticate], link.delete);
   router.delete("/byUser/:id", [authenticate], link.deleteForUser)
 
-  app.use("/link", router);
+  app.use("/resume-t2/link", router);
 };

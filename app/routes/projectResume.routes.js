@@ -8,5 +8,5 @@ module.exports = (app) => {
   router.put("/:projectResumeId", [authenticate], projectResume.update);
   router.delete("/:projectResumeId", [authenticate], projectResume.delete);
 
-  app.use("/projectResume", router);
+  app.use("/resume-t2/projectResume", router);
 };

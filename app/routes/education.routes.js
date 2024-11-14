@@ -8,6 +8,6 @@ module.exports = (app) => {
   router.get("/byUser/:id", [authenticate], education.findAllForUser);
   router.put("/:id", [authenticate], education.update);
   router.delete("/:id", [authenticate], education.delete);
-  app.use("/education", router);
+  app.use("/resume-t2/education", router);
 };
   

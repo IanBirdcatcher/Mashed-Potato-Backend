@@ -9,6 +9,6 @@ module.exports = (app) => {
     router.put("/:id", [authenticate], contactInfo.update);
     router.delete("/:id", [authenticate], contactInfo.delete);
   
-    app.use("/contactInfo", router);
+    app.use("/resume-t2/contactInfo", router);
 };
   

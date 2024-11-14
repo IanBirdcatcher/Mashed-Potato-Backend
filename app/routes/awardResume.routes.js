@@ -8,5 +8,5 @@ module.exports = (app) => {
   router.put("/:awardResumeId", [authenticate], awardResume.update);
   router.delete("/:awardResumeId", [authenticate], awardResume.delete);
 
-  app.use("/awardResume", router);
+  app.use("/resume-t2/awardResume", router);
 };
