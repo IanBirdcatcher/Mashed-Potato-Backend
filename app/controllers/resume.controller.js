@@ -19,6 +19,7 @@ exports.create = (req, res) => {
     templateId: req.body.templateId,
     templateName: req.body.templateName,
     jobTitle: req.body.jobTitle,
+    comment: req.body.comment,
     userId: req.body.userId,
   };
   // Save Resume in the database
