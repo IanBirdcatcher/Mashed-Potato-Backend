@@ -20,7 +20,15 @@ module.exports = (sequelize, Sequelize) => {
       major:{
         type: Sequelize.STRING,
         allowNull: false,
-      }
+      },
+      startDate: {
+        type: Sequelize.DATE,
+        allowNull: true,
+      },
+      endDate: {
+        type: Sequelize.DATE,
+        allowNull: true,
+      },
     });
   
     return education;
