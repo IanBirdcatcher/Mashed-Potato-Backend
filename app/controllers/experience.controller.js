@@ -16,6 +16,8 @@ exports.create = (req, res) => {
     experienceId: req.body.experienceId,
     jobTitle: req.body.jobTitle,
     jobDesc: req.body.jobDesc,
+    startDate: req.body.startDate,
+    endDate: req.body.endDate,
     userId: req.body.userId,
   };
   // Save Experience in the database

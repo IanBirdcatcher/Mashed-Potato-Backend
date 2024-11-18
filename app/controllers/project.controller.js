@@ -17,6 +17,8 @@ exports.create = (req, res) => {
     projectId: req.body.projectId,
     projectName: req.body.projectName,
     projectDesc: req.body.projectDesc,
+    startDate: req.body.startDate,
+    endDate: req.body.endDate,
     userId: req.body.userId
   };
   // Save Project in the database
