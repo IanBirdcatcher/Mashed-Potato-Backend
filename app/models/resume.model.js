@@ -9,9 +9,13 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      ProfSummary:{
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       jobTitle:{
         type: Sequelize.STRING,
-        allowNull: true,
+        allowNull: false,
       },
       templateId: {
         type: Sequelize.INTEGER,
