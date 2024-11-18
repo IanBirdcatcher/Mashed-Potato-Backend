@@ -17,7 +17,7 @@ exports.create = (req, res) => {
     awardId: req.body.awardId,
     awardName: req.body.awardName,
     awardDesc: req.body.awardDesc,
-    awardDate: req.bodu.awardDate,
+    awardDate: req.body.awardDate,
     userId: req.body.userId,
   };
   console.log(award);
