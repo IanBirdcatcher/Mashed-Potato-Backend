@@ -4,7 +4,6 @@ const Op = db.Sequelize.Op;
 
 // Create and Save a new User
 exports.create = (req, res) => {
-  // Validate request
   if (!req.body.fName) {
     res.status(400).send({
       message: "Must contain a first name",
@@ -12,13 +11,11 @@ exports.create = (req, res) => {
     return;
   }
 
-  // Create a User
   const user = {
     userId: req.body.userId,
     email: req.body.email,
   };
 
-  // Save User in the database
   User.create(user)
     .then((data) => {
       res.send(data);
@@ -46,7 +43,7 @@ exports.findAll = (req, res) => {
     });
 };
 
-// Find a single User with an userId
+// Find a single User with a userId
 exports.findOne = (req, res) => {
   const userId = req.params.id;
 
@@ -81,9 +78,6 @@ exports.findByEmail = (req, res) => {
         res.send(data);
       } else {
         res.send({ email: "not found" });
-        /*res.status(404).send({
-          message: `Cannot find User with email=${email}.`
-        });*/
       }
     })
     .catch((err) => {
@@ -91,7 +85,7 @@ exports.findByEmail = (req, res) => {
         message: "Error retrieving User with email=" + email,
       });
     });
-  };
+};
 
 // Update a User by the userId in the request
 exports.update = (req, res) => {
@@ -156,6 +150,55 @@ exports.deleteAll = (req, res) => {
       res.status(500).send({
         message:
           err.message || "Some error occurred while removing all people.",
+      });
+    });
+};
+
+// Find all admins 
+exports.findAdmins = (req, res) => {
+  User.findAll({ where: { isAdmin: true } })
+    .then((admins) => {
+      res.send(admins);
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: err.message || "Some error occurred while retrieving admins.",
+      });
+    });
+};
+
+// Add a new admin by email 
+exports.addAdmin = (req, res) => {
+  const { email } = req.body;
+
+  User.findOne({
+    where: { email: email },
+  })
+    .then((user) => {
+      if (!user) {
+        return res.status(404).send({
+          message: `User with email ${email} not found.`,
+        });
+      }
+
+      // Update the user to be an admin
+      user
+        .update({ isAdmin: true })
+        .then((updatedUser) => {
+          res.send({
+            message: "User successfully promoted to admin.",
+            user: updatedUser,
+          });
+        })
+        .catch((err) => {
+          res.status(500).send({
+            message: err.message || "Some error occurred while promoting user.",
+          });
+        });
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: "Error retrieving User with email=" + email,
       });
     });
 };
