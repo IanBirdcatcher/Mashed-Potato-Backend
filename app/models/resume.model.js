@@ -9,7 +9,7 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      ProfSummary:{
+      profSummary:{
         type: Sequelize.STRING,
         allowNull: false,
       },
