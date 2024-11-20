@@ -14,6 +14,7 @@ exports.create = (req, res) => {
   // Create a Experience
   const experience = {
     experienceId: req.body.experienceId,
+    organizationName: req.body.organizationName,
     jobTitle: req.body.jobTitle,
     jobDesc: req.body.jobDesc,
     startDate: req.body.startDate,
