@@ -30,27 +30,18 @@ exports.create = (req, res) => {
     });
 };
 
-// Update a User by the id in the request
-exports.update = (req, res) => {
-  const id = req.params.id;
+// Retrieve all Users from the database.
+exports.findAll = (req, res) => {
+  const userId = req.query.userId;
+  var condition = userId ? { userId: { [Op.like]: `%${userId}%` } } : null;
 
-  User.update(req.body, {
-    where: { id: id },
-  })
-    .then((num) => {
-      if (num == 1) {
-        res.send({
-          message: "User was updated successfully.",
-        });
-      } else {
-        res.send({
-          message: `Cannot update User with id=${id}. Maybe User was not found or req.body is empty!`,
-        });
-      }
+  User.findAll({ where: condition })
+    .then((data) => {
+      res.send(data);
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Error updating User with id=" + id,
+        message: err.message || "Some error occurred while retrieving people.",
       });
     });
 };
