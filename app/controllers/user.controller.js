@@ -29,27 +29,6 @@ exports.create = (req, res) => {
       });
     });
 };
-// Find a single User with an email
-exports.findByEmail = (req, res) => {
-  email = req.params.email;
-  User.findOne({
-    where: {
-      email: email,
-    },
-  })
-    .then((data) => {
-      if (data) {
-        res.send(data);
-      } else {
-        res.send({ email: "not found" });
-      }
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message: "Error retrieving User with email=" + email,
-      });
-    });
-};
 
 // Update a User by the id in the request
 exports.update = (req, res) => {
