@@ -159,3 +159,43 @@ exports.deleteAll = (req, res) => {
       });
     });
 };
+
+//update admin role
+exports.updateAdmin = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { name, email, role } = req.body; // Adjust fields based on your admin schema
+    
+    const updatedAdmin = await AdminModel.update(
+      { name, email, role }, // Data to update
+      { where: { id } } // Condition for update
+    );
+
+    if (updatedAdmin[0] === 0) {
+      return res.status(404).json({ message: "Admin not found or no changes made." });
+    }
+
+    res.status(200).json({ message: "Admin updated successfully." });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Failed to update admin.", error });
+  }
+};
+
+//add an admin
+exports.addAdmin = async (req, res) => {
+  try {
+    const { name, email, isAdmin} = req.body; // Adjust fields based on your admin schema
+
+    const newAdmin = await AdminModel.create({
+      name,
+      email,
+      isAdmin,
+    });
+
+    res.status(201).json({ message: "Admin added successfully.", admin: newAdmin });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Failed to add admin.", error });
+  }
+};

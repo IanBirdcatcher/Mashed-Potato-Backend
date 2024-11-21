@@ -1,6 +1,6 @@
 module.exports = (app) => {
   const user = require("../controllers/user.controller.js");
-  const { authenticate } = require("../authorization/authorization.js");
+  const { authenticate, checkAdmin } = require("../authorization/authorization.js");
   var router = require("express").Router();
 
   router.post("/", [authenticate], user.create);
@@ -8,6 +8,10 @@ module.exports = (app) => {
   router.get("/:id", [authenticate], user.findOne);
   router.put("/:id", [authenticate], user.update);
   router.delete("/:id", [authenticate], user.delete);
+
+  //admin stuff
+  router.put("/id", [authenticate, checkAdmin], user.updateAdmin);
+  router.post("/", [authenticate, checkAdmin], user.addAdmin);
 
   app.use("/resume-t2/user", router);
 };

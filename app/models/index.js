@@ -68,12 +68,12 @@ db.resume.belongsTo(db.user, {
 //user(admin) know about users
 db.user.hasMany(db.user, {
   as: "users",
-  foreignKey:  "adminId", sourceKey: "userId", 
+  sourceKey: "userId", 
   allowNull: true,
   onDelete: "CASCADE",
 });
 db.user.belongsTo(db.user, {
-  foreignKey:  "adminId", targetKey: "userId", 
+  targetKey: "userId", 
   allowNull: true,
   onDelete: "CASCADE",
 });
