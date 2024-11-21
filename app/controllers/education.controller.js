@@ -17,8 +17,7 @@ exports.create = (req, res) => {
     GPA: req.body.GPA,
     major: req.body.major,
     degree: req.body.degree,
-    startDate: req.body.startDate,
-    endDate: req.body.endDate,
+    dateRange: req.body.dateRange,
     userId: req.body.userId,
   };
 

@@ -13,15 +13,10 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      startDate: {
-        type: Sequelize.DATE,
+      dateRange: {
+        type: Sequelize.JSON,
         allowNull: true,
       },
-      endDate: {
-        type: Sequelize.DATE,
-        allowNull: true,
-      },
-
     });
   
     return experience;
