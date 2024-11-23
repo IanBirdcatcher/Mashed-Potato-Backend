@@ -23,8 +23,13 @@ module.exports = (sequelize, Sequelize) => {
       },
       templateName: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
+      },
+      comment: {
+        type: Sequelize.STRING,
+        allowNull: true,
       }
+
       
     });
   
