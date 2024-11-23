@@ -13,6 +13,10 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      awardDate: {
+        type: Sequelize.DATE,
+        allowNull: true,
+      },
     });
   
     return award;
