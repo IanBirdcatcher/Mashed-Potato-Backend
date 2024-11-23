@@ -17,8 +17,7 @@ exports.create = (req, res) => {
     organizationName: req.body.organizationName,
     jobTitle: req.body.jobTitle,
     jobDesc: req.body.jobDesc,
-    startDate: req.body.startDate,
-    endDate: req.body.endDate,
+    dateRange: req.body.dateRange,
     userId: req.body.userId,
   };
   // Save Experience in the database
