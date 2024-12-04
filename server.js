@@ -54,6 +54,7 @@ require("./app/routes/experienceResume.routes")(app);
 require("./app/routes/interestResume.routes")(app);
 require("./app/routes/linkResume.routes")(app);
 require("./app/routes/projectResume.routes")(app);
+require("./app/routes/skillResume.routes")(app);
 
 
 // Set the server to listen on a specified port
